@@ -1,0 +1,12 @@
+com/ufes/pss/solidexemplo1/RastreioEmTransito.class
+com/ufes/pss/solidexemplo1/Cliente.class
+com/ufes/pss/solidexemplo1/IModuloRatreioPedido.class
+com/ufes/pss/solidexemplo1/Pedido.class
+com/ufes/pss/solidexemplo1/CalculadoraTaxaEntrega.class
+com/ufes/pss/solidexemplo1/CalculadoraTaxaPadrao.class
+com/ufes/pss/solidexemplo1/AtualizadorRastreio.class
+com/ufes/pss/solidexemplo1/RatreioEntregue.class
+com/ufes/pss/solidexemplo1/CalculadoraTaxaTipoCliente.class
+com/ufes/pss/solidexemplo1/Principal.class
+com/ufes/pss/solidexemplo1/IModuloCalculadoraTaxa.class
+com/ufes/pss/solidexemplo1/RastreioEmProducao.class
