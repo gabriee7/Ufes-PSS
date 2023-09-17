@@ -9,9 +9,9 @@ package com.ufes.pss.solidexemplo1;
  * @author nitro
  */
 public class CalculadoraTaxaPadrao implements IModuloCalculadoraTaxa {
-    private double taxa = 10.0;
     
     public void processar(Pedido pedido){
+        double taxa = 10.0;
         pedido.setValorTaxa(taxa);
     }
 }

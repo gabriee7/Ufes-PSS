@@ -9,10 +9,10 @@ package com.ufes.pss.solidexemplo1;
  * @author nitro
  */
 public class CalculadoraTaxaTipoCliente implements IModuloCalculadoraTaxa{
-    private double taxa;
     
     @Override
     public void processar(Pedido pedido){
+        double taxa;
         switch(pedido.getCliente().getTipo()){
             case "GOLD":
                 taxa = pedido.getValorTaxa() * 0.9;
