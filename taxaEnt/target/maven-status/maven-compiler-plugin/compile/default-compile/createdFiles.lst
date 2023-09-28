@@ -1,0 +1,8 @@
+com/ufes/pss/taxaent/TaxaEntrega.class
+com/ufes/pss/taxaent/CalculadoraTaxaEntrega.class
+com/ufes/pss/taxaent/IModuloCalculadoraTaxa.class
+com/ufes/pss/taxaent/CalculadoraTaxaPadrao.class
+com/ufes/pss/taxaent/CalculadoraTaxaTipoCliente.class
+Principal.class
+com/ufes/pss/taxaent/Pedido.class
+com/ufes/pss/taxaent/Cliente.class
