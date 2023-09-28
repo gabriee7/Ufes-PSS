@@ -14,7 +14,6 @@ import java.util.List;
 public class Pedido {
     private Cliente cliente;
     private String bairroEndereco;
-    private ArrayList<String> status;
     private double valorTotal;
     private TaxaEntrega taxaEntrega;
     
@@ -22,7 +21,6 @@ public class Pedido {
         this.cliente = new Cliente(cliente, tipo);
         this.bairroEndereco = endereco;
         this.valorTotal = valorTotal;
-        this.status = new ArrayList<>();
         this.taxaEntrega = new TaxaEntrega();
         this.taxaEntrega.processarTaxa(this);
     }
@@ -35,20 +33,12 @@ public class Pedido {
         return bairroEndereco;
     }
 
-    public ArrayList<String> getStatus() {
-        return status;
-    }
-
     public double getValorTotal() {
         return valorTotal;
     }
 
     public void setBairroEndereco(String bairroEndereco) {
         this.bairroEndereco = bairroEndereco;
-    }
-
-    public void setStatus(String status) {
-        this.status.add(status);
     }
 
     public void setValorTotal(double valorTotal) {
