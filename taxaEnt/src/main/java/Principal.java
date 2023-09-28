@@ -11,8 +11,7 @@ import com.ufes.pss.taxaent.Pedido;
  */
 public class Principal {
     public static void main(String[] args) {
-        Pedido p1 = new Pedido("Gabriel", "GOLD", "GUARAREMA", 15.0);
-        p1.getTaxaEntrega().processarTaxa(p1);
+        Pedido p1 = new Pedido("Gabriel", "DIAMOND", "GUARAREMA", 15.0);
 
         System.out.println(p1.toString());
         

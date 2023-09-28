@@ -24,6 +24,7 @@ public class Pedido {
         this.valorTotal = valorTotal;
         this.status = new ArrayList<>();
         this.taxaEntrega = new TaxaEntrega();
+        this.taxaEntrega.processarTaxa(this);
     }
 
     public Cliente getCliente() {
