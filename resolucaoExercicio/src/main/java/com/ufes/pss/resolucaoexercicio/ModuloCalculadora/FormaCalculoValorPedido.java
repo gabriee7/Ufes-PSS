@@ -40,6 +40,6 @@ public class FormaCalculoValorPedido implements IFormaCalculoTaxaDescontoEntrega
         
     }
     private boolean seAplica(Pedido pedido){
-        return !"".equals(pedido.getBairro()) && pedido.getValorTaxaEntrega() > 0;
+        return !"".equals(pedido.getValorTotal()) && pedido.getValorTaxaEntrega() > 0;
     }
 }

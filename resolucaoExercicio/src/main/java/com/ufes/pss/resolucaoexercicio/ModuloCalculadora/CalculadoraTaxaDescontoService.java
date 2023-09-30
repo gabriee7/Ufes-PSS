@@ -17,8 +17,8 @@ public class CalculadoraTaxaDescontoService {
     public CalculadoraTaxaDescontoService(){
         modulos = new ArrayList<>();
         modulos.add(new FormaCalculoCategoriaProduto());
-        modulos.add(new FormaCalculoTaxaBairro());
         modulos.add(new FormaCalculoTipoCliente());
+        modulos.add(new FormaCalculoTaxaBairro());
         modulos.add(new FormaCalculoValorPedido());
     }
     

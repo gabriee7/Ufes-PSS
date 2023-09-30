@@ -25,7 +25,7 @@ public class Produto {
         return nome;
     }
 
-    public String getCategoria() {
+    public String getCategoriaProduto() {
         return categoria;
     }
 

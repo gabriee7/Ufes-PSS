@@ -17,14 +17,15 @@ public class Principal {
         Pedido pedido1;
         Produto produto1;
 
-        client1 = new Cliente("Gabriel", "GOLD", "Rua Viviane de Siqueira", "Guararema", "Alegre");
-        produto1 = new Produto("Cheese Burger", "Burger", 35, 2);
-        pedido1 = new Pedido(15,001,client1);
+        client1 = new Cliente("Gabriel", "GOLD", "Rua Viviane de Siqueira", "CENTRO", "Alegre");
+        produto1 = new Produto("Cheese Burguer", "BURGUER", 25, 2);
         
+        pedido1 = new Pedido(15,001,client1);
         pedido1.addItem(produto1, 2);
 
         
         calculadora.processar(pedido1);
+        
         
         System.out.print("\n" + pedido1.toString() + "\n\n");
     }

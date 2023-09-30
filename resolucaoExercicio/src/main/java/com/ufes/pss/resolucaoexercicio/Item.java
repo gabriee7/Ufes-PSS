@@ -44,6 +44,9 @@ public class Item {
         this.valorTotal = valorTotal;
     }
    
+    public String getCategoria(){
+        return produto.getCategoriaProduto();
+    }
     
     @Override
     public String toString() {

@@ -61,6 +61,10 @@ public class Pedido {
         valorTotal = valor;
     }
 
+    public ArrayList<Item> getItens() {
+        return itens;
+    }
+    
     @Override
     public String toString() {
         return "Pedido{" + "data=" + data + ", valorTaxaEntrega=" + valorTaxaEntrega + ", valorTotal=" + valorTotal + ", numero=" + numero + ", cliente=" + cliente + ", cupons=" + cupons + ", itens=" + itens + '}';
