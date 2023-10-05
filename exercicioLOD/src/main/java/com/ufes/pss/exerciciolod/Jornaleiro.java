@@ -35,7 +35,7 @@ public class Jornaleiro {
         this.totalCobranca = totalCobranca;
     }
     
-    public void addCliente(double valorCarteira){
-        clientes.add(new Cliente(valorCarteira));
+    public void addCliente(Cliente cliente){
+        clientes.add(cliente);
     }
 }
