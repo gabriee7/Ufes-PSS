@@ -8,8 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import model.Funcionario;
-import model.Visualiza;
-import model.collections.FuncionarioCollection;
+import service.ExcluiCompleto;
+import service.OperacaoFuncionarioService;
+import service.VisualizaPorNome;
 import view.VisualizaFuncionarioView;
 
 /**
@@ -18,15 +19,16 @@ import view.VisualizaFuncionarioView;
  */
 public class VisualizaFuncionarioPresenter {
     private VisualizaFuncionarioView view;
-    private Visualiza model;
+    private OperacaoFuncionarioService service;
     Funcionario funcionario;
 
     public VisualizaFuncionarioPresenter(Funcionario funcionario) {
+        this.service = OperacaoFuncionarioService.getInstancia();
         this.view = new VisualizaFuncionarioView();
-        this.model = new Visualiza();
+        this.view.setVisible(false);
         this.funcionario = funcionario;
         configurar();
-        visualiza(funcionario);
+        preencheCampos();
         this.view.setVisible(true);
     }
     
@@ -34,16 +36,14 @@ public class VisualizaFuncionarioPresenter {
         view.getTxtNome().setEditable(false);
         view.getTxtCargo().setEditable(false);
         view.getTxtSalarioBase().setEditable(false);
-        view.getTxtNome().setText("");
-        view.getTxtCargo().setText("");
-        view.getTxtSalarioBase().setText("");
+        limpaCampos();
         view.getBtnFechar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent evt){
                 try{
                     fechar();
                 }catch(Exception e){
-                    System.out.print(e);
+                    exibirMensagem("Erro:" + e.getMessage(), "Erro", 0);
                 }
             }
         });
@@ -51,32 +51,45 @@ public class VisualizaFuncionarioPresenter {
         view.getBtnExcluir().addActionListener(new ActionListener(){
             @Override 
             public void actionPerformed(ActionEvent evt){
-                excluir();
+                try{
+                    excluir();
+                }catch(Exception e){
+                    exibirMensagem("Erro:" + e.getMessage(), "Erro", 0);
+                }
             }
         });
         
     }
-    
-    private void visualiza(Funcionario funcionario){
+  
+    private void preencheCampos(){
         view.getTxtNome().setText(funcionario.getNome());
         view.getTxtCargo().setText(funcionario.getCargo());
         view.getTxtSalarioBase().setText(Double.toString(funcionario.getSalarioBase()));
     }
+
         
     private void fechar(){
-        this.view.getTxtNome().setText("");
-        this.view.getTxtCargo().setText("");
-        this.view.getTxtSalarioBase().setText("");
+        limpaCampos();
         this.view.setVisible(false);
     }
     
     private void excluir(){
-        int escolha = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        int escolha = JOptionPane.showConfirmDialog(null, "Deseja excluir "+ this.funcionario.getNome() + "?", "Confirmação", JOptionPane.YES_NO_OPTION);
          
         if(escolha == JOptionPane.YES_OPTION){ 
-            FuncionarioCollection.getInstancia().removeFuncionario(this.funcionario);
-            JOptionPane.showMessageDialog(view, "Excluído com sucesso!");
+            service.excluiFuncionario(new ExcluiCompleto(), this.funcionario.getNome());
+            exibirMensagem("Excluido com Sucesso!", "Exclusao", 2);
             view.setVisible(false);
         }
+    }
+    
+    private void limpaCampos(){
+        this.view.getTxtNome().setText("");
+        this.view.getTxtCargo().setText("");
+        this.view.getTxtSalarioBase().setText("");   
+    }
+     
+    private void exibirMensagem(String mensagem, String titulo, int type){
+        JOptionPane.showMessageDialog(view, mensagem, titulo,type);
     }
 }

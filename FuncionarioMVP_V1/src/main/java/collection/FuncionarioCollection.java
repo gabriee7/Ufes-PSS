@@ -2,11 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model.collections;
+package collection;
 
 import java.util.ArrayList;
 import model.Funcionario;
-import presenter.ConsultaPresenter;
 
 /**
  *
@@ -15,11 +14,9 @@ import presenter.ConsultaPresenter;
 public class FuncionarioCollection {
     private static FuncionarioCollection instancia;
     private ArrayList<Funcionario> funcionarios;
-    private ConsultaPresenter consultaPresenter;
 
     private FuncionarioCollection() {
         funcionarios = new ArrayList<>();
-        consultaPresenter = new ConsultaPresenter();
     }
 
     public static FuncionarioCollection getInstancia() {
@@ -31,7 +28,6 @@ public class FuncionarioCollection {
 
     public void setFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
-        consultaPresenter.atualizaTbl(getFuncionarios());
     }
 
     public ArrayList<Funcionario> getFuncionarios() {
@@ -40,6 +36,5 @@ public class FuncionarioCollection {
     
     public void removeFuncionario(Funcionario removerFuncionario){
         funcionarios.remove(removerFuncionario);
-        consultaPresenter.atualizaTbl(getFuncionarios());
     }
 }

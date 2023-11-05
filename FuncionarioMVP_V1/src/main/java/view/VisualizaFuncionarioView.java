@@ -39,7 +39,7 @@ public class VisualizaFuncionarioView extends javax.swing.JFrame {
         btnFechar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Visualiza");
 
         jLabel1.setFont(new java.awt.Font("Cantarell", 1, 24)); // NOI18N
         jLabel1.setText("Funcionário");

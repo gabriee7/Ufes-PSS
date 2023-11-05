@@ -60,14 +60,14 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Cargo", "Salario Base", ""
+                "Nome", "Cargo", "Salario Base"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -81,7 +81,6 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblConsulta);
         if (tblConsulta.getColumnModel().getColumnCount() > 0) {
             tblConsulta.getColumnModel().getColumn(0).setResizable(false);
-            tblConsulta.getColumnModel().getColumn(3).setMaxWidth(30);
         }
 
         btnVisualizar.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N

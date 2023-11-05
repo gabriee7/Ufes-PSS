@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import model.Funcionario;
-import model.collections.FuncionarioCollection;
-import model.InclusaoFuncionario;
+import service.MetodoIncluiSimples;
+import service.OperacaoFuncionarioService;
 import view.InclusaoFuncionarioView;
 
 /**
@@ -18,52 +18,56 @@ import view.InclusaoFuncionarioView;
  */
 public class InclusaoFuncionarioPresenter {
     InclusaoFuncionarioView view;
-    InclusaoFuncionario model; 
+    OperacaoFuncionarioService service;
 
     public InclusaoFuncionarioPresenter() {
         this.view = new InclusaoFuncionarioView();
-        this.model = new InclusaoFuncionario();
+        this.service = OperacaoFuncionarioService.getInstancia();
         configurar();
     }
 
     private void salvar(){
+        boolean retorno;
         String nome = view.getTxtNome().getText();
         String cargo = view.getTxtCargo().getText();
-        double salarioBase = Double.parseDouble(view.getTxtSalarioBase().getText());
+        String salarioBaseString = view.getTxtSalarioBase().getText();
+        double salarioBase = 0;     
         
-        if(nome.isEmpty()){
-            JOptionPane.showMessageDialog(view, "Campo nome vazio!");
-        }else if(cargo.isEmpty()){
-            JOptionPane.showMessageDialog(view, "Campo cargo vazio!");
-        }else if(salarioBase < 0){
-            JOptionPane.showMessageDialog(view, "Campo salario base inválido!");
+        //verifica campo salario
+        if(!salarioBaseString.equals("")){
+            salarioBase = Double.parseDouble(view.getTxtSalarioBase().getText());
         }else{
-            FuncionarioCollection.getInstancia().setFuncionario(new Funcionario(nome, cargo, salarioBase));
-            JOptionPane.showMessageDialog(view, nome.split(" ")[0] + " salvo com sucesso!");
-            limpaCampos();
+            throw new RuntimeException("Campo salario base vazio!");
+        }
+        
+        //verifica campo salario, nome, cargo
+        if(salarioBase < 0){
+            throw new RuntimeException("Campo salario base inválido!");
+        }else if(nome.trim().isEmpty()){
+            throw new RuntimeException("Campo nome vazio!");
+        }else if(cargo.isEmpty()){
+            throw new RuntimeException("Campo cargo vazio!");
+        }else{
+            retorno = service.incluirFuncionario(new MetodoIncluiSimples(), new Funcionario(nome, cargo, salarioBase));
+            if(retorno){
+                exibirMensagem(nome.split(" ")[0] + " salvo com sucesso!", "Cadastrado", 1);
+                limpaCampos();
+            }else{
+                throw new RuntimeException("Erro ao tentar salvar");
+            }
         }
     }
-        
-    private void fechar(){
-        limpaCampos();
-        this.view.setVisible(false);
-    }
     
-    private void limpaCampos(){
-        this.view.getTxtNome().setText("");
-        this.view.getTxtCargo().setText("");
-        this.view.getTxtSalarioBase().setText("");   
-        this.view.setVisible(false);
-    }
-        private void configurar(){
+    private void configurar(){
         limpaCampos();
         this.view.getBtnSalvar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent evt){
                 try{
                     salvar();
-                }catch(Exception e){
-                    System.out.print(e);
+                    fechar();
+                }catch (RuntimeException e) {
+                    exibirMensagem("Erro: " + e.getMessage(), "Erro", 0);
                 }
             }
         });
@@ -74,12 +78,26 @@ public class InclusaoFuncionarioPresenter {
                 try{    
                     fechar();
                 }catch(Exception e){
-                    System.out.print(e);
+                    exibirMensagem("Erro: " + e.getMessage(), "Erro", 0);
                 }
             }
         });
         
         this.view.setVisible(true);
     }
-
+    
+    private void fechar(){
+        limpaCampos();
+        this.view.setVisible(false);
+    }
+    
+    private void limpaCampos(){
+        this.view.getTxtNome().setText("");
+        this.view.getTxtCargo().setText("");
+        this.view.getTxtSalarioBase().setText("");   
+    }
+    
+    private void exibirMensagem(String mensagem, String titulo, int type){
+        JOptionPane.showMessageDialog(view, mensagem, titulo,type);
+    }
 }

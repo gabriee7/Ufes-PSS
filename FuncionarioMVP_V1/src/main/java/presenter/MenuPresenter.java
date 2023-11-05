@@ -4,10 +4,10 @@
  */
 package presenter;
 
-import model.collections.FuncionarioCollection;
 import view.MenuView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,11 +18,11 @@ public class MenuPresenter {
 
     public MenuPresenter() {
         view = new MenuView();
-        configura();
+        configurar();
         view.setVisible(true);
     }
         
-    private void configura(){
+    private void configurar(){
         view.getBtnIncluir().addActionListener(new ActionListener() {
             InclusaoFuncionarioPresenter presenter;
 
@@ -31,7 +31,7 @@ public class MenuPresenter {
                 try{
                     presenter = new InclusaoFuncionarioPresenter();
                 }catch(Exception e){
-                    System.out.print(e);
+                    exibirMensagem("Erro" + e.getMessage(), "Erro", 0);
                 }
             }
         });
@@ -41,12 +41,15 @@ public class MenuPresenter {
             @Override
             public void actionPerformed(ActionEvent evt){
                 try{
-                    presenter = new  ConsultaPresenter();
-                    presenter.atualizaTbl(FuncionarioCollection.getInstancia().getFuncionarios());
+                    presenter = new ConsultaPresenter();
                 }catch(Exception e){
-                    System.out.print(e);
+                    exibirMensagem("Erro" + e.getMessage(), "Erro", 0);
                 }
             }
         });
+    }
+    
+    private void exibirMensagem(String mensagem, String titulo, int type){
+        JOptionPane.showMessageDialog(view, mensagem, titulo,type);
     }
 }

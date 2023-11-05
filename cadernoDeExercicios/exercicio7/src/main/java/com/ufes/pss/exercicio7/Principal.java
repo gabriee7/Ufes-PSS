@@ -15,11 +15,11 @@ public class Principal {
         Configuracao instancia2 = Configuracao.getInstancia();
         
         instancia1.setDado("Instancia 1");
-        System.err.println("\nInstancia 1: "+instancia1.toString());
-        System.err.println("\nInstancia 2: "+instancia2.toString());
+        System.out.println("\nInstancia 1: "+instancia1.toString());
+        System.out.println("\nInstancia 2: "+instancia2.toString());
         
         instancia2.setDado("Instancia 2");
-        System.err.println("\nInstancia 1: "+instancia1.toString());
-        System.err.println("\nInstancia 2: "+instancia2.toString());
+        System.out.println("\nInstancia 1: "+instancia1.toString());
+        System.out.println("\nInstancia 2: "+instancia2.toString());
     }
 }
